@@ -15,6 +15,7 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
+    padding: 0px var(--default-layout-horizontal-space);
 }
 
 .logo{
@@ -99,5 +100,6 @@
     margin-left: 24px;
     background-color: transparent;
     padding: 4px 8px;
+    cursor: pointer;
 }
 
