@@ -13,9 +13,13 @@
     width: 100%;
     border-radius: 0;
     font-weight: 500;
-    line-height: 2.4rem;
+    line-height: 1.8rem;
+    font-weight: 500;
     &:hover{
         background-color: rgba(22,24,35,0.03);
+    }
+    &.separate{
+        border-top: 1px solid rgba(22,24,35,0.12);
     }
 }
 

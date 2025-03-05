@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from './Menu.module.scss'
 import Tippy from "@tippyjs/react/headless";
+import 'tippy.js/dist/tippy.css'; // optional
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Menuitems  from './MenuItem'
@@ -32,6 +33,7 @@ function Menu ( {children, items = [], onChange = defaultfc}) {
     }
     return ( 
         <Tippy
+                onHide={() => sethistory(prev => prev.slice(0,1))}
                 delay={600}
                 interactive  // selec duoc phan tu trong tippy
                 placement='bottom-end'

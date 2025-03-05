@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 
 function Button({
-        to,
-        href,
-        rounded = false,
-        disable = false,
-        text = false,
-        primary = false,
-        outline = false,
-        small = false,
-        large = false,
-        leftIcon,
-        className,
-        children,
-        onClick,
-        ...passPost
+  to,
+  href,
+  rounded = false,
+  disable = false,
+  text = false,
+  primary = false,
+  outline = false,
+  small = false,
+  large = false,
+  leftIcon,
+  className,
+  children,
+  onClick,
+  ...passPost
 }) {
   let Comp = "button";
   const props = {
@@ -52,14 +52,14 @@ function Button({
     text,
     disable,
     rounded,
-    [className] : className
+    [className]: className,
     // { "custom-button": "custom-button" }
   });
 
   return (
     <Comp className={classes} {...props}>
-        {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
-        <span className={cx('tittle')}>{children}</span>
+      {leftIcon && <span className={cx("icon")}>{leftIcon}</span>}
+      <span className={cx("tittle")}>{children}</span>
     </Comp>
   );
 }
