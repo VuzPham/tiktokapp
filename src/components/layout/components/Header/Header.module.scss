@@ -17,74 +17,8 @@
   padding: 0px var(--default-layout-horizontal-space);
 }
 
-.logo {
-}
-.Search {
-  position: relative;
-  width: 361px;
-  height: var(--search-hight);
-  background-color: rgba(22, 24, 35, 0.06);
-  border-radius: var(--search-border-radius);
-  padding-left: 16px;
-  display: flex;
-  border: 1.5px solid transparent;
-  input {
-    flex: 1;
-    height: 100%;
-    color: var(--back);
-    font-size: 1.6rem;
-    background-color: transparent;
-    caret-color: var(--primary);
-  }
-  input:not(:placeholder-shown) ~ .Search-btn {
-    color: rgba(22, 25, 35, 0.75);
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    height: calc(var(--search-hight) - var(--search-top-spacer) * 2);
-    background-color: rgba(22, 25, 35, 0.12);
-    width: 1px;
-    right: var(--search-btn-with);
-    top: var(--search-top-spacer);
-  }
-  &:focus-within {
-    border-color: rgba(22, 25, 35, 0.2);
-  }
-}
-.Search,
-.search-result {
-  width: 361px;
-}
-.search-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  padding: 5px 12px;
-  color: rgba(22, 24, 35, 0.5);
-}
-.Clear,
-.loading {
-  position: absolute;
-  right: calc(var(--search-btn-with) + 16px);
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(22, 24, 35, 0.34);
-}
-.Search-btn {
-  width: var(--search-btn-with);
-  height: 100%;
-  border-top-right-radius: var(--search-border-radius);
-  border-bottom-right-radius: var(--search-border-radius);
-  font-size: 1.8rem;
-  color: rgba(22, 24, 35, 0.34);
-  &:hover {
-    background-color: rgba(22, 24, 35, 0.03);
-    cursor: pointer;
-  }
-  &:active {
-    background-color: rgba(22, 24, 35, 0.06);
-  }
-}
+
+
 .custom-login {
     color: red;
 }

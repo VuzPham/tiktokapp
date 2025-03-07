@@ -3,7 +3,7 @@ import image from "~/assets/images/";
 import classNames from "classnames/bind";
 
 
-const Image =  forwardRef(({ alt, src, className, ...prop}, ref) =>{
+const Image =  forwardRef(({ alt, src, className, ...props}, ref) =>{
   const [fallback, setFallback] = useState(""); // Chuỗi rỗng nên là falthy => src là chuỗi ban đầu
 
   const handleError = () => {
