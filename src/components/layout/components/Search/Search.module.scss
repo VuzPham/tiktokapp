@@ -46,8 +46,21 @@
     position: absolute;
     right: calc(var(--search-btn-with) + 16px);
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%); // ghi đè lên rotate nên phải đặt dưới 
     color: rgba(22, 24, 35, 0.34);
+  }
+
+  .loading {
+    animation: spinner 1s linear infinite;
+  }
+
+  @keyframes spinner {
+    from {
+      transform: translateY(-50%) rotate(0);
+    }
+    to {
+      transform: translateY(-50%) rotate(360deg);
+    }
   }
   .Search-btn {
     width: var(--search-btn-with);

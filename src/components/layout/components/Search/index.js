@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { use, useRef } from "react";
 import { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,13 +20,21 @@ function Search() {
   const [searchValue, setSearchvalue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setshowResult] = useState(true);
-
+  const [showloading, setshowLoading] = useState(false); 
   const inputRef = useRef();
   useEffect(() => {
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=v&type=less`)
+    if(!searchValue.trim() ){
+      return;
+    }
+    setshowLoading(true) // thực hiện load
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
       .then((res) => res.json())
       .then((res) => {
         setSearchResult(res.data)
+        setshowLoading(false) // load xong thì ẩn icon loading 
+      })
+      .catch(() => {
+          setshowLoading(false)
       })
   }, [searchValue]);
   const handleHidenresult = () => {
@@ -59,7 +67,7 @@ function Search() {
           onChange={(e) => setSearchvalue(e.target.value)} // twowaybiding
           onFocus={() => setshowResult(true)}  // focus vào ô input hiện lại
         />
-        {searchValue && <button className={cx("Clear")} onClick={() => {
+        {searchValue && !showloading && <button className={cx("Clear")} onClick={() => {
             setSearchvalue('');
             inputRef.current.focus();
             
@@ -67,9 +75,8 @@ function Search() {
           {/* Clear */}
           <FontAwesomeIcon icon={faCircleXmark} />
         </button>}
-       
-        {/* <FontAwesomeIcon className={cx("loading")} icon={faSpinner} /> */}
-        {/* Loading */}
+        
+        {showloading && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />} {/* Loading */}
 
         <button className={cx("Search-btn")}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
