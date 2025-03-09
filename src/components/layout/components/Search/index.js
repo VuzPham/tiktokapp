@@ -7,15 +7,13 @@ import {
   faSpinner,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import axios from 'axios';
 
-import request from "~/utils/request";
+import * as searchService from "~/components/apiService/searchAPI";
 import styles from "./Search.module.scss";
 import HeadlessTippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/Accountitems";
 import { useDebounce } from "~/hooks";
-import { type } from "@testing-library/user-event/dist/type";
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -27,26 +25,42 @@ function Search() {
 
   const debounced = useDebounce(searchValue,500);
   const inputRef = useRef();
+  // Trường hợp ô tìm kiếm rỗng
   useEffect(() => {
     if(!debounced.trim() ){
       setSearchResult([])
       return;
     }
-    setshowLoading(true) // thực hiện load
-
-    request.get(`users/search`,{
-      params:{
-        q:debounced,
-        type :'less'
-      }
-    })
-    .then(function(response) {
-      setSearchResult(response.data.data)
-      setshowLoading(false) // load xong thì ẩn icon loading 
-    })
-    .catch(() => {
-      setshowLoading(false)
-  })
+  
+    // FETCH API
+    const fetchApi = async () => {
+        // debounced giá trị search thay đổi thì loading
+        setshowLoading(true) // thực hiện load
+        const result = await searchService.search(debounced)
+        setSearchResult(result)
+        setshowLoading(false)
+      // try {
+      //     // Gọi API với tham số truyền vào từ biến `debounced`
+      //     const res = await request.get(`users/search`, {
+      //         params: {
+      //             q: debounced,
+      //             type: 'less'
+      //         }
+      //     });
+  
+      //     // Cập nhật kết quả tìm kiếm vào state
+      //     setSearchResult(res.data);
+      // } catch (error) {
+      //     // Log lỗi nếu có vấn đề khi gọi API
+      //     console.error("Lỗi khi gọi API:", error);
+      // } finally {
+      //     // Ẩn biểu tượng loading, dù API gọi thành công hay thất bại
+      //     setshowLoading(false);
+      // }
+  };
+  // Gọi hàm để thực hiện request
+  fetchApi(); 
+  
     // fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
     //   .then((res) => res.json())
     //   .then((res) => {
