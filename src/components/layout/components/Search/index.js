@@ -7,12 +7,15 @@ import {
   faSpinner,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "./Search.module.scss";
+import axios from 'axios';
 
+import request from "~/utils/request";
+import styles from "./Search.module.scss";
 import HeadlessTippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/Accountitems";
 import { useDebounce } from "~/hooks";
+import { type } from "@testing-library/user-event/dist/type";
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -26,18 +29,33 @@ function Search() {
   const inputRef = useRef();
   useEffect(() => {
     if(!debounced.trim() ){
+      setSearchResult([])
       return;
     }
     setshowLoading(true) // thực hiện load
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data)
-        setshowLoading(false) // load xong thì ẩn icon loading 
-      })
-      .catch(() => {
-          setshowLoading(false)
-      })
+
+    request.get(`users/search`,{
+      params:{
+        q:debounced,
+        type :'less'
+      }
+    })
+    .then(function(response) {
+      setSearchResult(response.data.data)
+      setshowLoading(false) // load xong thì ẩn icon loading 
+    })
+    .catch(() => {
+      setshowLoading(false)
+  })
+    // fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     setSearchResult(res.data)
+    //     setshowLoading(false) // load xong thì ẩn icon loading 
+    //   })
+    //   .catch(() => {
+    //       setshowLoading(false)
+    //   })
   }, [debounced]);
   const handleHidenresult = () => {
     setshowResult(false);
