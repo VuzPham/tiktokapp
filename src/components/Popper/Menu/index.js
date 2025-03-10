@@ -12,7 +12,7 @@ const cx = classNames.bind(styles)
 const defaultfc = () => {}
 
 
-function Menu ( {children, items = [], onChange = defaultfc}) {
+function Menu ( {children, items = [], hideOnClick = false, onChange = defaultfc}) {
     const [history,sethistory] = useState([{data: items}]); //data gồm mảng của các cấp 
     const current = history[history.length-1]; // chuyển về đúng mảng
 
@@ -37,6 +37,7 @@ function Menu ( {children, items = [], onChange = defaultfc}) {
                 delay={600}
                 interactive  // selec duoc phan tu trong tippy
                 placement='bottom-end'
+                hideOnClick = {hideOnClick}
                 render={attrs => (
                     <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                         <PopperWrapper className={(cx('menu-poper'))}>

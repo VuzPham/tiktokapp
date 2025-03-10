@@ -14,6 +14,7 @@ import HeadlessTippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/Accountitems";
 import { useDebounce } from "~/hooks";
+import { SearchIcon } from "~/Icons";
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -74,6 +75,16 @@ function Search() {
   const handleHidenresult = () => {
     setshowResult(false);
   }
+
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+    if(!searchValue.startsWith(' ') && searchValue.trim()){  // start with có giá trị
+      setSearchvalue(e.target.value)
+    }
+  }
+  const handleSubmid = (e) => {
+      e.preventDefault();
+  }
   return (
     <HeadlessTippy
       interactive // selec duoc phan tu trong tippy
@@ -82,7 +93,6 @@ function Search() {
         <div className={cx("search-result")} tabIndex="-1" {...attrs}>
           <PopperWrapper>
             <h4 className={cx("search-title")}>Accounts</h4>
-            
             {searchResult.map((result) => (
                 <AccountItem key={result.id} data={result}/>
             ))}
@@ -98,7 +108,7 @@ function Search() {
           value={searchValue} // toWaybiding
           placeholder="Search account and video"
           spellCheck={false}
-          onChange={(e) => setSearchvalue(e.target.value)} // twowaybiding
+          onChange={handleChange} // twowaybiding
           onFocus={() => setshowResult(true)}  // focus vào ô input hiện lại
         />
         {searchValue && !showloading && <button className={cx("Clear")} onClick={() => {
@@ -112,8 +122,8 @@ function Search() {
         
         {showloading && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />} {/* Loading */}
 
-        <button className={cx("Search-btn")}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <button className={cx("Search-btn")} onMouseDown={handleSubmid}>
+          <SearchIcon/>
         </button>
       </div>
     </HeadlessTippy>

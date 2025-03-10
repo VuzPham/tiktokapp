@@ -18,7 +18,10 @@ import {
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react";
+import { Link } from "react-router-dom";
 
+
+import routesConfig from '~/config/routes'
 
 import Button from "~/components/Button";
 import styles from "./Header.module.scss";
@@ -26,6 +29,7 @@ import images from "~/assets/images";
 import Menu from "~/components/Popper/Menu";
 import Image from "~/components/Image";
 import Search from "../Search";
+import { InboxIcon, MessageIcon, UploadIcon } from "~/Icons";
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
   {
@@ -99,9 +103,9 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <div className={cx("logo")}>
+        <Link to={routesConfig.home} className={cx("logo")}>
           <img src={images.logo} alt="tiktok" />
-        </div>
+        </Link>
         {/* Search */}
         <Search />
         <div className={cx("action")}>
@@ -109,11 +113,14 @@ function Header() {
             <>
               <Tippy content="Upload Video" placement="bottom" delay={[0, 200]}>
                 <button className={cx("action-btn")}>
-                  <FontAwesomeIcon icon={faCloudArrowUp}></FontAwesomeIcon>
+                  <UploadIcon />
                 </button>
               </Tippy>
               <button className={cx("action-btn")}>
-                <FontAwesomeIcon icon={faMessage}></FontAwesomeIcon>
+                <MessageIcon />
+              </button>
+              <button className={cx("action-btn")}>
+                <InboxIcon />
               </button>
             </>
           ) : (

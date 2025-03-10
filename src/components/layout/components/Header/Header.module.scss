@@ -16,7 +16,9 @@
   justify-content: space-between;
   padding: 0px var(--default-layout-horizontal-space);
 }
-
+.logo{
+  display: flex;
+}
 
 
 .custom-login {
