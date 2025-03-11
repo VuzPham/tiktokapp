@@ -7,7 +7,7 @@ import {
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 
-import * as searchService from "~/components/apiService/searchAPI";
+import * as searchService from "~/components/Service/searchService";
 import styles from "./Search.module.scss";
 import HeadlessTippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
