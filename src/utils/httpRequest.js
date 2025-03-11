@@ -1,6 +1,6 @@
 import axios from "axios";
 
-console.log(process.env.REACT_APP_BASE_URL)
+//console.log(process.env.REACT_APP_BASE_URL)
 // hiển  thị ở môi trường development qua file .env.development
 
  const httpRequest = axios.create({
