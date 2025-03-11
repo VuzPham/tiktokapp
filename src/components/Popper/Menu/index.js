@@ -39,9 +39,15 @@ function Menu({
       );
     });
   };
+  const handleResetMenu = () => {
+    sethistory((prev) => prev.slice(0, 1));
+  }
+  const handleBack = () => { 
+      sethistory((prev) => prev.slice(0, prev.length - 1));
+  };
   return (
-    <Tippy  
-      onHide={() => sethistory((prev) => prev.slice(0, 1))}
+    <Tippy
+      onHide={handleResetMenu}
       delay={600}
       interactive // selec duoc phan tu trong tippy
       placement="bottom-end"
@@ -52,15 +58,11 @@ function Menu({
             {history.length > 1 && (
               <Header
                 title="English"
-                onBack={() => {
-                  sethistory((prev) => prev.slice(0, prev.length - 1));
-                }}
+                onBack={handleBack}
               />
             )}
 
-            <div className={cx('menu-body')}> 
-                {renderItems()}
-            </div>
+            <div className={cx("menu-body")}>{renderItems()}</div>
           </PopperWrapper>
         </div>
       )}
