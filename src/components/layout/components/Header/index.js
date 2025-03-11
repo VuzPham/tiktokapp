@@ -54,6 +54,63 @@ const MENU_ITEMS = [
           code: "KOR",
           title: "Korea",
         },
+        {
+          code: "SPN",
+          title: "Spanish",
+        },
+        {
+          code: "RUSRUS",
+          title: "Russian",
+        },
+        {
+          code: "JPN",
+          title: "Japanese",
+        },
+        {
+          code: "THJ",
+          title: "Thai",
+        },
+        {
+          code: "TRK",
+          title: "Turkish",
+        },
+        {
+          code: "HI",
+          title: "Hindi",
+        },
+        {
+          code: "BGI",
+          title: "Bengali",
+        },
+        {
+          code: "ITY",
+          title: "Italian",
+        },
+        {
+          code: "KOR",
+          title: "Gujarati",
+        },
+        {
+          code: "KOR",
+          title: "Levantine Arabic",
+        },
+        {
+          code: "KOR",
+          title: "Iranian Persian",
+        },
+        {
+          code: "KOR",
+          title: "Portuguese",
+        },
+        {
+          code: "KOR",
+          title: "Western Punjabi",
+        },  
+        {
+          code: "KOR",
+          title: "Egyptian Arabic",
+        },
+        
       ],
     },
   },

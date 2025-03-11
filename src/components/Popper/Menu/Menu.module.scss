@@ -9,6 +9,9 @@
 .menu-poper{
     padding-bottom: 8px;
 }
+.menu-body{
+    overflow-y: auto; // fix lại theo đúng tỷ lê sinh ra scroll
+}
 .menu-item{
     width: 100%;
     border-radius: 0;
@@ -28,6 +31,7 @@
     position: relative;
     height: 50px; 
     margin-top: -8px;
+    flex-shrink: 0;
 }
 .back-btn{
     width: 50px;

@@ -1,11 +1,10 @@
-import React, { use, useRef } from "react";
+import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleXmark,
   faSpinner,
-  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
 import * as searchService from "~/components/apiService/searchAPI";
@@ -78,7 +77,7 @@ function Search() {
 
   const handleChange = (e) => {
     const searchValue = e.target.value;
-    if(!searchValue.startsWith(' ') && searchValue.trim()){  // start with có giá trị
+    if(!searchValue.startsWith(' ')){  // start with có giá trị
       setSearchvalue(e.target.value)
     }
   }
@@ -86,47 +85,50 @@ function Search() {
       e.preventDefault();
   }
   return (
-    <HeadlessTippy
-      interactive // selec duoc phan tu trong tippy
-      visible={showResult && searchResult.length > 0}
-      render={(attrs) => (
-        <div className={cx("search-result")} tabIndex="-1" {...attrs}>
-          <PopperWrapper>
-            <h4 className={cx("search-title")}>Accounts</h4>
-            {searchResult.map((result) => (
-                <AccountItem key={result.id} data={result}/>
-            ))}
-
-          </PopperWrapper>
+    //Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context. 
+   <div>
+      <HeadlessTippy
+        interactive // selec duoc phan tu trong tippy
+        visible={showResult && searchResult.length > 0}
+        render={(attrs) => (
+          <div className={cx("search-result")} tabIndex="-1" {...attrs}>
+            <PopperWrapper>
+              <h4 className={cx("search-title")}>Accounts</h4>
+              {searchResult.map((result) => (
+                  <AccountItem key={result.id} data={result}/>
+              ))}
+  
+            </PopperWrapper>
+          </div>
+        )}
+        onClickOutside={handleHidenresult} // của tippy khi click ngoài tool tip thì ẩn
+      >
+        <div className={cx("Search")}>
+          <input
+            ref = {inputRef}
+            value={searchValue} // toWaybiding
+            placeholder="Search account and video"
+            spellCheck={false}
+            onChange={handleChange} // twowaybiding
+            onFocus={() => setshowResult(true)}  // focus vào ô input hiện lại
+          />
+          {searchValue && !showloading && <button className={cx("Clear")} onClick={() => {
+              setSearchvalue('');
+              inputRef.current.focus();
+              
+          }}>
+            {/* Clear */}
+            <FontAwesomeIcon icon={faCircleXmark} />
+          </button>}
+          
+          {showloading && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />} {/* Loading */}
+  
+          <button className={cx("Search-btn")} onMouseDown={handleSubmid}>
+            <SearchIcon/>
+          </button>
         </div>
-      )}
-      onClickOutside={handleHidenresult} // của tippy khi click ngoài tool tip thì ẩn
-    >
-      <div className={cx("Search")}>
-        <input
-          ref = {inputRef}
-          value={searchValue} // toWaybiding
-          placeholder="Search account and video"
-          spellCheck={false}
-          onChange={handleChange} // twowaybiding
-          onFocus={() => setshowResult(true)}  // focus vào ô input hiện lại
-        />
-        {searchValue && !showloading && <button className={cx("Clear")} onClick={() => {
-            setSearchvalue('');
-            inputRef.current.focus();
-            
-        }}>
-          {/* Clear */}
-          <FontAwesomeIcon icon={faCircleXmark} />
-        </button>}
-        
-        {showloading && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />} {/* Loading */}
-
-        <button className={cx("Search-btn")} onMouseDown={handleSubmid}>
-          <SearchIcon/>
-        </button>
-      </div>
-    </HeadlessTippy>
+      </HeadlessTippy>
+   </div>
   );
 }
 
