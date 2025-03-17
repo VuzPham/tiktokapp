@@ -39,6 +39,7 @@ function Menu({
       );
     });
   };
+
   const handleResetMenu = () => {
     sethistory((prev) => prev.slice(0, 1));
   }
@@ -48,7 +49,7 @@ function Menu({
   return (
     <Tippy
       onHide={handleResetMenu}
-      delay={600}
+      delay={500}
       interactive // selec duoc phan tu trong tippy
       placement="bottom-end"
       hideOnClick={hideOnClick}
@@ -70,6 +71,7 @@ function Menu({
       {children}
     </Tippy>
   );
+
 }
 
 export default Menu;

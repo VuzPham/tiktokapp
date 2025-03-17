@@ -86,7 +86,7 @@ function Search() {
     <div>
       <HeadlessTippy
         interactive // selec duoc phan tu trong tippy
-        // Nếu searchResult là undefined hoặc null, biểu thức searchResult?.length sẽ trả về undefined thay vì gây ra lỗi.
+        //  Nếu searchResult là undefined hoặc null, biểu thức searchResult?.length sẽ trả về undefined thay vì gây ra lỗi.
         // Nếu kết quả của searchResult?.length là undefined, biểu thức này sẽ trả về 0.
         // Điều này đảm bảo rằng phép so sánh luôn được thực hiện với một số hợp lệ.
         visible={showResult && (searchResult?.length || 0) > 0}
