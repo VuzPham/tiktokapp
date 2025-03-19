@@ -4,3 +4,113 @@
     padding: 20px 0px 26px 8px;
     margin-left: -18px;
 }
+.discover,
+.footer {
+    font-weight: 500;
+    padding: 16px 0;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 0;
+        height: 1px;
+        background: rgba(22, 24, 35, 0.08);
+    }
+
+    .title {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0 8px;
+        color: rgba(22, 24, 35, 0.75);
+        margin-bottom: 8px;
+    }
+
+    
+}
+
+.discover {
+    padding-bottom: 8px;
+
+    .discover-list {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding-left: 8px;
+    }
+
+    .hashtag {
+        display: flex;
+        box-sizing: border-box;
+        width: fit-content;
+        max-width: 100%;
+        height: 24px;
+        margin-bottom: 12px;
+        padding: 3px 10px;
+        border: 1px solid rgba(22, 24, 35, 0.2);
+        border-radius: 12px;
+        background: rgb(255, 255, 255);
+        margin-right: 8px;
+        color: rgba(22, 24, 35, 0.75);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        overflow: hidden;
+
+        &:hover {
+            background: rgba(22, 24, 35, 0.03);
+            cursor: pointer;
+        }
+
+        svg {
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+
+        .text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+}
+
+.footer {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 17px;
+    padding-left: 8px;
+
+    .links-1,
+    .links-2,
+    .links-3 {
+        margin-bottom: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        a {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    a,
+    span {
+        color: rgba(22, 24, 35, 0.5);
+        margin-right: 6px;
+        margin-top: 5px;
+    }
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+
+    p {
+        margin-left: 3px;
+    }
+}

@@ -17,6 +17,7 @@
 .account-item{
     display: flex;
     padding: 8px;
+    cursor: pointer;
 }
 
 .item-info{
@@ -29,7 +30,11 @@
     color: #161823;
     line-height: 1;
     font-weight: 300;
+    strong{
+        font-weight: 600;
+    }
 }
+
 .check{
     font-size: 1.4rem;
     color: #20d5ec;
